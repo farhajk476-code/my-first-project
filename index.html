@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HydroTrack - Water Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3fbff;
+    color: #12304a;
+}
+
+/* Navbar */
+
+nav {
+    height: 70px;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0, 100, 180, 0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #087ea4;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #12304a;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #08a6d6;
+}
+
+
+/* Hero */
+
+.hero {
+    min-height: 600px;
+    padding: 70px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    background: linear-gradient(135deg, #e9faff, #ffffff);
+}
+
+.hero-text {
+    max-width: 560px;
+}
+
+.tag {
+    color: #08a6d6;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #08a6d6;
+}
+
+.hero-text > p:not(.tag) {
+    color: #647b8c;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-size: 17px;
+}
+
+.btn {
+    display: inline-block;
+    background: #08a6d6;
+    color: white;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #067a9e;
+    transform: translateY(-3px);
+}
+
+
+/* Water Circle */
+
+.water-circle {
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #08a6d6, #075b91);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 20px 50px rgba(0, 130, 200, 0.3);
+}
+
+.drop {
+    font-size: 65px;
+}
+
+.water-circle h2 {
+    font-size: 38px;
+}
+
+.water-circle p {
+    opacity: 0.9;
+}
+
+
+/* Tracker */
+
+.tracker-section {
+    padding: 90px 10%;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title p {
+    color: #08a6d6;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+.tracker-card {
+    max-width: 750px;
+    margin: auto;
+    background: #f5fbfe;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(0, 100, 150, 0.1);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+#percentage {
+    color: #08a6d6;
+}
+
+.progress-bar {
+    height: 18px;
+    background: #d9eef5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #08a6d6, #075b91);
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.progress-container p {
+    margin-top: 12px;
+    color: #647b8c;
+}
+
+.water-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.water-buttons button {
+    flex: 1;
+    border: none;
+    background: #dff7ff;
+    color: #087ea4;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.water-buttons button:hover {
+    background: #08a6d6;
+    color: white;
+}
+
+.reset {
+    display: block;
+    margin: 25px auto 0;
+    border: none;
+    background: transparent;
+    color: #e05d5d;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/* Tips */
+
+.tips-section {
+    padding: 90px 10%;
+    background: #f3fbff;
+}
+
+.tips {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.tip-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 100, 150, 0.08);
+    transition: 0.3s;
+}
+
+.tip-card:hover {
+    transform: translateY(-8px);
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.tip-card h3 {
+    margin-bottom: 12px;
+}
+
+.tip-card p {
+    color: #647b8c;
+    line-height: 1.6;
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    background: #073b5c;
+    color: white;
+    padding: 25px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .water-circle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .water-buttons {
+        flex-direction: column;
+    }
+
+    .tips {
+        flex-direction: column;
+    }
+
+    .tip-card {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">💧 HydroTrack</div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#tracker">Tracker</a>
+            <a href="#tips">Tips</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <p class="tag">YOUR DAILY HYDRATION PARTNER</p>
+
+            <h1>Stay Hydrated.<br>
+                <span>Stay Healthy.</span>
+            </h1>
+
+            <p>
+                Track your daily water intake and build a healthy
+                hydration habit with HydroTrack.
+            </p>
+
+            <a href="#tracker" class="btn">Start Tracking 💧</a>
+        </div>
+
+        <div class="water-circle">
+            <div class="drop">💧</div>
+            <h2 id="heroAmount">0 ml</h2>
+            <p>Drank Today</p>
+        </div>
+    </section>
+
+
+    <section id="tracker" class="tracker-section">
+
+        <div class="section-title">
+            <p>DAILY TRACKER</p>
+            <h2>How much water have you had?</h2>
+        </div>
+
+        <div class="tracker-card">
+
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>Today's Progress</span>
+                    <strong id="percentage">0%</strong>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+
+                <p>
+                    <span id="current">0</span> ml of
+                    <span id="goal">2000</span> ml
+                </p>
+            </div>
+
+            <div class="water-buttons">
+                <button onclick="addWater(250)">+ 250 ml</button>
+                <button onclick="addWater(500)">+ 500 ml</button>
+                <button onclick="addWater(750)">+ 750 ml</button>
+            </div>
+
+            <button class="reset" onclick="resetWater()">
+                Reset Today's Intake
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section id="tips" class="tips-section">
+
+        <div class="section-title">
+            <p>HYDRATION TIPS</p>
+            <h2>Simple ways to drink more water</h2>
+        </div>
+
+        <div class="tips">
+
+            <div class="tip-card">
+                <div class="icon">⏰</div>
+                <h3>Set Reminders</h3>
+                <p>
+                    Set reminders throughout the day so you
+                    don't forget to drink water.
+                </p>
+            </div>
+
+            <div class="tip-card">
+                <div class="icon">🥤</div>
+                <h3>Carry a Bottle</h3>
+                <p>
+                    Keep a reusable water bottle with you
+                    wherever you go.
+                </p>
+            </div>
+
+            <div class="tip-card">
+                <div class="icon">🍋</div>
+                <h3>Add Some Flavor</h3>
+                <p>
+                    Add lemon, mint, or fruit to make your
+                    water more enjoyable.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <p>💧 HydroTrack © 2026 | Stay Hydrated, Stay Healthy</p>
+    </footer>
+
+    <script>
+        let water = 0;
+const dailyGoal = 2000;
+
+function addWater(amount) {
+    water += amount;
+
+    if (water > dailyGoal) {
+        water = dailyGoal;
+    }
+
+    updateTracker();
+}
+
+function updateTracker() {
+
+    let percentage = Math.round((water / dailyGoal) * 100);
+
+    document.getElementById("current").textContent = water;
+    document.getElementById("heroAmount").textContent = water + " ml";
+    document.getElementById("percentage").textContent = percentage + "%";
+
+    document.getElementById("progress").style.width =
+        percentage + "%";
+
+    if (percentage === 100) {
+        document.getElementById("percentage").textContent =
+            "Goal Complete! 🎉";
+    }
+}
+
+function resetWater() {
+    water = 0;
+    updateTracker();
+}
+    </script>
+
+</body>
+</html>
